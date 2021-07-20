@@ -3,11 +3,9 @@
 
 #include <iostream>
 #include <fstream>
-
+#include <stack>
 
 using namespace std;
-
-
 
 class balanced {
 
@@ -15,9 +13,10 @@ private:
 
     void print();
     void inputFile();
-
+    char stack();
 
 public:
+
     void driver();
 
 };
@@ -27,9 +26,14 @@ void balanced::driver() {
 
     print();
     inputFile();
+    stack();
 }
 
 void balanced::inputFile() {
+
+    cout << "Welcome to the program" << endl;
+
+    cout << endl;
 
     ifstream inputFile;
 
@@ -38,14 +42,76 @@ void balanced::inputFile() {
     if (!inputFile.is_open()) {
         cout << "Try again, file not found." << endl;
         
-        exit(0);
+      //  exit(0);
     }
     
     cout << "File has been found." << endl;
 
+}
 
+char balanced::stack() {
 
+    // variables
 
+    std::stack<char> myStack;
+
+    char tempChar;
+
+    int x = 0;
+
+    int y = 90;
+
+    int rightpre = 0, leftpre = 0;
+    
+    ifstream inputFile;
+
+    inputFile.open("inputString.txt");
+
+    while (!inputFile.eof()) {
+          
+        while (inputFile.get(tempChar)) {
+            
+            cout << tempChar;  
+            myStack.push(tempChar);
+        }    
+    }
+
+    cout << endl;
+
+    while (!myStack.empty()) {
+
+        if (myStack.top() == '(') {
+            ++leftpre;
+        }
+
+        else if (myStack.top() == ')') {
+            ++rightpre;
+        }
+
+        cout << myStack.top();
+        myStack.pop();
+
+    };
+
+    cout << endl;
+
+    cout << "Size of stack: " << myStack.size() << endl;
+
+    cout << "LeftPre: " << leftpre << endl;
+
+    cout << "Rightpree:  "<< rightpre << endl;
+
+    if (leftpre != rightpre) {
+        cout << "Values are not equal" << endl;
+
+    }
+
+    else
+        cout << "Equal." << endl;
+
+    return 0;
+   
+             
 }
 
 //methods
@@ -56,7 +122,6 @@ void balanced::print() {
 
 int main()
 {
-    cout << "Welcome to the program" << endl;
 
     balanced run;
 
