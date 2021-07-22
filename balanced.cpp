@@ -11,7 +11,6 @@ class balanced {
 
 private:
 
-    void print();
     void inputFile();
     char stack();
 
@@ -24,10 +23,15 @@ public:
 
 void balanced::driver() {
 
-    print();
     inputFile();
     stack();
+
 }
+
+// Methods 
+
+
+// Input file checker
 
 void balanced::inputFile() {
 
@@ -41,13 +45,18 @@ void balanced::inputFile() {
 
     if (!inputFile.is_open()) {
         cout << "Try again, file not found." << endl;
-        
-      //  exit(0);
+
+        exit(0);
+
     }
     
     cout << "File has been found." << endl;
 
+    cout << endl;
+
 }
+
+// Stsck 
 
 char balanced::stack() {
 
@@ -57,15 +66,13 @@ char balanced::stack() {
 
     char tempChar;
 
-    int x = 0;
-
-    int y = 90;
-
     int rightpre = 0, leftpre = 0;
     
     ifstream inputFile;
 
     inputFile.open("inputString.txt");
+
+    // While inputFile is NOT at the EOF push Char into the stack. 
 
     while (!inputFile.eof()) {
           
@@ -73,10 +80,13 @@ char balanced::stack() {
             
             cout << tempChar;  
             myStack.push(tempChar);
+
         }    
     }
 
     cout << endl;
+
+    // While the stack is NOT empty transverse through and count the number of parentheses. Pop after each iteration.
 
     while (!myStack.empty()) {
 
@@ -94,30 +104,31 @@ char balanced::stack() {
     };
 
     cout << endl;
+    cout << endl;
 
-    cout << "Size of stack: " << myStack.size() << endl;
+    // Parentheses count
 
-    cout << "LeftPre: " << leftpre << endl;
+    cout << "Left parentheses: " << leftpre << endl;
 
-    cout << "Rightpree:  "<< rightpre << endl;
+    cout << "Right parentheses: "<< rightpre << endl;
+
+    cout << endl;
+
+    // Compare parentheses results 
 
     if (leftpre != rightpre) {
+
         cout << "Values are not equal" << endl;
 
     }
 
     else
-        cout << "Equal." << endl;
+        cout << "Values are equal." << endl;
+
+    inputFile.close();
 
     return 0;
-   
              
-}
-
-//methods
-
-void balanced::print() {
-
 }
 
 int main()
